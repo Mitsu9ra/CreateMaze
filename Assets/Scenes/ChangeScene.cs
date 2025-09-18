@@ -5,8 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
+    public static int flag = 0;
     public void change_button()
     {
-        SceneManager.LoadScene("after");
+        flag = 1;
+        SceneManager.LoadScene("MazeScene");
+
+    }
+    public void change_button2()
+    {
+        flag = 2;
+        SceneManager.LoadScene("MazeScene");
+
+    }
+    public void change_button3()
+    {
+        flag = 3;
+        SceneManager.LoadScene("MazeScene");
+
     }
 }
