@@ -107,4 +107,10 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         float cameraSizeY = height / 2f;
         cam.orthographicSize = Mathf.Max(cameraSizeX, cameraSizeY);
     }
+
+    public int[,] GetMaze()
+{
+    return maze;
+}
+
 }
