@@ -24,4 +24,16 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("MazeScene");
 
     }
+    public void change_button4()
+    {
+        flag = 4;
+        SceneManager.LoadScene("MazeScene");
+
+    }
+    public void change_button5()
+    {
+        flag = 5;
+        SceneManager.LoadScene("MazeScene");
+
+    }
 }
