@@ -9,7 +9,26 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 62c0d9c693f6cd24daf8c48763c54e85
+  - enabled: 1
+    path: Assets/Scenes/GameClearScene.unity
+    guid: 11d87051115a6cb4e9d3d15bd2bd8432
+  - enabled: 1
+    path: Assets/Scenes/LevelSelectScene.unity
+    guid: 2c501b3220f309d47a992f14d94110f6
+  - enabled: 1
+    path: Assets/Scenes/RankingEntryScene.unity
+    guid: 9c707f9765a033346887cf50f79d2e72
+  - enabled: 1
+    path: Assets/Scenes/RankingScene.unity
+    guid: ecd796c346fc06f459ed0ef80ab982cd
+  - enabled: 1
+    path: Assets/Scenes/TutoriialScene.unity
+    guid: 3c2a084fbb4753a44b95667454caa152
+  - enabled: 1
     path: Assets/Scenes/MazeScene.unity
     guid: 7afc93c641010604cab290b72303f7ab
+
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
