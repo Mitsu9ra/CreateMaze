@@ -7,6 +7,6 @@ public class ChangeScene : MonoBehaviour
 {
     public void change_button()
     {
-        SceneManager.LoadScene("MazeScene")
+        SceneManager.LoadScene("after");
     }
 }
