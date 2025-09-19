@@ -36,4 +36,14 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("MazeScene");
 
     }
+    public void change_button6()
+    {
+        SceneManager.LoadScene("RankingEntryScene");
+
+    }
+    public void change_button7()
+    {
+        SceneManager.LoadScene("RankingScene");
+
+    }
 }
