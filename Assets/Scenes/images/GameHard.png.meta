@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b35321105d4574342a8b86688adb5da1
+guid: 1d616943b20ca0144ad12ba33ebc13fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 69235594380212151
-    second: 202411_0
+      213: -659986348040751417
+    second: HARDGAME_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 202411_0
+      name: HARDGAME_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 170
         y: 0
-        width: 1920
-        height: 1080
+        width: 324
+        height: 764
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7b778d00869f5f000800000000000000
-      internalID: 69235594380212151
+      spriteID: 7c67c68c9e147d6f0800000000000000
+      internalID: -659986348040751417
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      202411_0: 69235594380212151
+      HARDGAME_0: -659986348040751417
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
