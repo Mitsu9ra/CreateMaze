@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1d010f18756699c4ab4cad0f332ab766
+guid: 5b4ebc760a1413045b50fd6b2eb8d43c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8004072077640082881
-    second: 202410_0
+      213: 8215763860932601759
+    second: EASYGAME_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 202410_0
+      name: EASYGAME_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 170
         y: 0
-        width: 1920
-        height: 1080
+        width: 324
+        height: 764
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1c52c50b52d241f60800000000000000
-      internalID: 8004072077640082881
+      spriteID: f972169d3b1440270800000000000000
+      internalID: 8215763860932601759
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      202410_0: 8004072077640082881
+      EASYGAME_0: 8215763860932601759
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

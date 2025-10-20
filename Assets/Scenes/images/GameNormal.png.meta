@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea8b24187e987e7468df7a4bf9037adf
+guid: 12c05446208d38447a00035674420d9a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4324668849085773277
-    second: 202412_0
+      213: -1597918168290562268
+    second: NORMALGAME_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 202412_0
+      name: NORMALGAME_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 170
         y: 0
-        width: 1920
-        height: 1080
+        width: 324
+        height: 764
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 32a8b074890bbf3c0800000000000000
-      internalID: -4324668849085773277
+      spriteID: 42fe5ee54ed03d9e0800000000000000
+      internalID: -1597918168290562268
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      202412_0: -4324668849085773277
+      NORMALGAME_0: -1597918168290562268
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
