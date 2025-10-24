@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Text;
 
-// ←ここ注意！ Serializable は各クラス1回ずつだけ！
 [Serializable]
 public class UserPoint
 {
@@ -22,7 +21,8 @@ public class UserPointList
 
 public class UserPointManager
 {
-    private string baseUrl = "http://localhost:5000/api";
+    // ★ ここをLAN内のPC IPに変更
+    private string baseUrl = "http://192.168.0.15/api";
 
     // ✅ ランキング順に全ユーザーのポイントを取得
     public IEnumerator GetAllUserPointsSorted(Action<List<UserPoint>> onSuccess, Action<string> onError)
@@ -35,60 +35,69 @@ public class UserPointManager
         {
             try
             {
+                // PHP側が配列だけ返すので、JSONUtilityで読める形にする
                 string json = "{\"users\":" + request.downloadHandler.text + "}";
+                Debug.Log("レスポンス全文: " + json);
+
                 UserPointList data = JsonUtility.FromJson<UserPointList>(json);
 
-                // 🔽 ソート（ポイント降順）
-                data.users.Sort((a, b) => b.point.CompareTo(a.point));
-
-                onSuccess?.Invoke(data.users);
+                if (data != null && data.users != null)
+                {
+                    // 🔽 ポイント降順にソート
+                    data.users.Sort((a, b) => b.point.CompareTo(a.point));
+                    onSuccess?.Invoke(data.users);
+                }
+                else
+                {
+                    onError?.Invoke("データが空です");
+                }
             }
             catch (Exception e)
             {
-                onError?.Invoke("JSONパースエラー: " + e.Message);
+                onError?.Invoke("JSONパースエラー: " + e.Message + "\nレスポンス: " + request.downloadHandler.text);
             }
         }
         else
         {
-            onError?.Invoke("通信エラー: " + request.error);
+            onError?.Invoke("通信エラー: " + request.error + "\nURL: " + url);
         }
     }
 
-
-    // ✅ スコア登録（新規 or 更新）
+    // ✅ ユーザーポイント登録・更新
     public IEnumerator UpdateUserPoint(int userId, string userName, int point, Action<UserPoint> onSuccess, Action<string> onError)
     {
         string url = $"{baseUrl}/updatePoint.php";
         string json = $"{{\"userId\":{userId},\"userName\":\"{userName}\",\"point\":{point}}}";
 
-        byte[] body = Encoding.UTF8.GetBytes(json);
-        UnityWebRequest req = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-        req.uploadHandler = new UploadHandlerRaw(body);
-        req.downloadHandler = new DownloadHandlerBuffer();
-        req.SetRequestHeader("Content-Type", "application/json");
-        req.SetRequestHeader("Accept", "application/json");
+        Debug.Log("送信内容: " + json);
 
-        Debug.Log("送信内容: " + json); // デバッグ出力
-
-        yield return req.SendWebRequest();
-
-        if (req.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest req = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST))
         {
-            try
+            byte[] body = Encoding.UTF8.GetBytes(json);
+            req.uploadHandler = new UploadHandlerRaw(body);
+            req.downloadHandler = new DownloadHandlerBuffer();
+            req.SetRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            req.SetRequestHeader("Accept", "application/json");
+
+            yield return req.SendWebRequest();
+
+            if (req.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("レスポンス: " + req.downloadHandler.text);
-                UserPoint data = JsonUtility.FromJson<UserPoint>(req.downloadHandler.text);
-                onSuccess?.Invoke(data);
+                try
+                {
+                    Debug.Log("レスポンス: " + req.downloadHandler.text);
+                    UserPoint data = JsonUtility.FromJson<UserPoint>(req.downloadHandler.text);
+                    onSuccess?.Invoke(data);
+                }
+                catch (Exception e)
+                {
+                    onError?.Invoke("JSONパースエラー: " + e.Message + "\nレスポンス全文: " + req.downloadHandler.text);
+                }
             }
-            catch (Exception e)
+            else
             {
-                onError?.Invoke("JSONパースエラー: " + e.Message + "\nレスポンス全文: " + req.downloadHandler.text);
+                onError?.Invoke("通信エラー: " + req.error + "\nURL: " + url);
             }
-        }
-        else
-        {
-            onError?.Invoke("通信エラー: " + req.error + "\nURL: " + url);
         }
     }
-
 }

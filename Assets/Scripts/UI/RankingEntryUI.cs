@@ -19,11 +19,10 @@ public class RankingEntryUI : MonoBehaviour
 
     void OnSendClicked()
     {
-        string userName = nameInput.text;
+        string userName = PlayerPrefs.GetString("userEmail", "Guest");
         int point = int.Parse(scoreInput.text);
 
-        // 仮のID（実際はログインIDなどで管理）
-        int userId = Random.Range(1, 9999);
+        int userId = userName.GetHashCode(); // 仮の一意ID（DB側で管理でもOK）
 
         StartCoroutine(api.UpdateUserPoint(userId, userName, point,
             (res) =>
@@ -34,4 +33,5 @@ public class RankingEntryUI : MonoBehaviour
             (err) => Debug.LogError(err)
         ));
     }
+
 }
