@@ -22,7 +22,7 @@ public class UserPointList
 public class UserPointManager
 {
     // ★ ここをLAN内のPC IPに変更
-    private string baseUrl = "http://192.168.0.15/api";
+    private string baseUrl = "http://10.18.20.27/api";
 
     // ✅ ランキング順に全ユーザーのポイントを取得
     public IEnumerator GetAllUserPointsSorted(Action<List<UserPoint>> onSuccess, Action<string> onError)
