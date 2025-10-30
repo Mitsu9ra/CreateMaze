@@ -1,53 +1,146 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Goal : MonoBehaviour
 {
     private static int goalCount = 0;
-    private bool isResetting = false; // “ñdƒŠƒZƒbƒg–h~
+    private bool isResetting = false;
+    private bool isGameFinished = false;
 
-    private TextMeshProUGUI goalText; // ‰æ–Ê‚É•\¦‚·‚éText(TMP)
+    private TextMeshProUGUI goalText;
+    private TextMeshProUGUI finishText;
+    private ShowCountdown countdown;
+
+    private static float totalScore = 0f;
+    private float startDelay = 1f;
+    private float elapsedTime = 0f;
+
+    // âœ… ãƒœã‚¿ãƒ³å‚ç…§ã‚’è¿½åŠ 
+    public Button titleButton;
+    public Button rankingButton;
 
     void Start()
     {
-        // ƒV[ƒ“ã‚ÌuGoalTextv‚ğ’T‚µ‚Äæ“¾
+        countdown = FindObjectOfType<ShowCountdown>();
+
         GameObject textObj = GameObject.Find("GoalText");
         if (textObj != null)
         {
             goalText = textObj.GetComponent<TextMeshProUGUI>();
             UpdateGoalText();
         }
-        else
+
+        GameObject finishObj = GameObject.Find("FinishText");
+        if (finishObj != null)
         {
-            Debug.LogWarning("GoalText ƒIƒuƒWƒFƒNƒg‚ªƒV[ƒ““à‚ÉŒ©‚Â‚©‚è‚Ü‚¹‚ñBCanvas‚É Text (TMP) ‚ğ”z’u‚µ‚Ä‚­‚¾‚³‚¢B");
+            finishText = finishObj.GetComponent<TextMeshProUGUI>();
+            finishText.gameObject.SetActive(false);
+        }
+
+        // âœ… ãƒœã‚¿ãƒ³åˆæœŸåŒ–
+        if (titleButton != null)
+            titleButton.gameObject.SetActive(false);
+        if (rankingButton != null)
+            rankingButton.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        elapsedTime += Time.deltaTime;
+        if (elapsedTime < startDelay)
+            return;
+
+        if (countdown != null && countdown.RemainingTime <= 0 && !isGameFinished)
+        {
+            FinishGame();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (isResetting) return; // “ñdƒŠƒZƒbƒg–h~
+        if (isResetting) return;
 
         if (other.CompareTag("Player"))
         {
-            goalCount++; // ƒS[ƒ‹‰ñ”‚ğ‰ÁZ
-            Debug.Log($"Œ»İ‚ÌƒS[ƒ‹‰ñ”: {goalCount}");
-            UpdateGoalText();
+            goalCount++;
 
+            // ã“ã“ã‚’å…ˆã«å‘¼ã³å‡ºã™ï¼
             MazeGenerator_WallExtend_Proper mazeGen = FindObjectOfType<MazeGenerator_WallExtend_Proper>();
-            if (mazeGen != null)
+
+            if (countdown != null && mazeGen != null)
             {
+                // ã‚¹ã‚³ã‚¢ = æ®‹ã‚Šã‚¿ã‚¤ãƒ  Ã— è¿·è·¯ã®å¹…
+                float addScore = countdown.RemainingTime * mazeGen.width*goalCount;
+                totalScore += addScore;
+                Debug.Log($"ã‚¹ã‚³ã‚¢åŠ ç®—: +{addScore:F2} (åˆè¨ˆ: {totalScore:F2})");
+
+                //  æ®‹ã‚Šæ™‚é–“ +
+                if (ChangeScene.flag > 1)
+                {
+                    countdown.AddExtraTime(7f);
+                    Debug.Log("æ®‹ã‚Šæ™‚é–“ +7 ç§’ï¼");
+                }
+                //  è¿·è·¯æ‹¡å¤§ï¼‹ãƒªã‚»ãƒƒãƒˆ
                 isResetting = true;
-                mazeGen.ResetMazeSafe(); // –À˜HÄ¶¬
+                mazeGen.ExpandMaze(2);
+                mazeGen.ResetMazeSafe();
                 isResetting = false;
             }
+
+            UpdateGoalText();
         }
     }
+
 
     private void UpdateGoalText()
     {
         if (goalText != null)
         {
-            goalText.text = $"ƒS[ƒ‹‰ñ”: {goalCount}";
+            goalText.text = $"ã‚¹ã‚³ã‚¢: {totalScore:F2}";
         }
+    }
+
+    private void FinishGame()
+    {
+        if (finishText != null && !finishText.gameObject.activeSelf)
+        {
+            finishText.gameObject.SetActive(true);
+            finishText.transform.SetAsLastSibling();
+
+            // âœ… ã‚¹ã‚³ã‚¢ã‚’æ•´æ•°ã«ä¸¸ã‚ã¦è¡¨ç¤º
+            int finalScore = Mathf.RoundToInt(totalScore);
+            finishText.text = $"FINISH!!\næœ€çµ‚ã‚¹ã‚³ã‚¢: {finalScore}";
+
+            // âœ… ã‚¹ã‚³ã‚¢ä¿å­˜ï¼ˆfloatã§ä¿å­˜ã—ã¦OKï¼‰
+            PlayerPrefs.SetFloat("FinalScore", totalScore);
+            PlayerPrefs.Save();
+
+            Time.timeScale = 0f;
+            isGameFinished = true;
+            Debug.Log($"ã‚²ãƒ¼ãƒ çµ‚äº†: FINISH!!ï¼ˆæœ€çµ‚ã‚¹ã‚³ã‚¢ {totalScore:F2}ï¼‰");
+
+            // âœ… ãƒœã‚¿ãƒ³ã‚’è¡¨ç¤º
+            if (titleButton != null)
+            {
+                titleButton.gameObject.SetActive(true);
+                titleButton.onClick.RemoveAllListeners(); // â† äºŒé‡ç™»éŒ²é˜²æ­¢
+                titleButton.onClick.AddListener(() => LoadScene("TitleScene"));
+            }
+
+            if (rankingButton != null)
+            {
+                rankingButton.gameObject.SetActive(true);
+                rankingButton.onClick.RemoveAllListeners();
+                rankingButton.onClick.AddListener(() => LoadScene("RankingEntryScene"));
+            }
+        }
+    }
+
+    private void LoadScene(string sceneName)
+    {
+        Time.timeScale = 1f; // æ™‚é–“ã‚’æˆ»ã™
+        SceneManager.LoadScene(sceneName);
     }
 }
