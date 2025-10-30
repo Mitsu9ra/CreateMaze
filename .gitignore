@@ -128,4 +128,4 @@ Packages/packages-lock.json
 /[Aa]ssets/Project/Plugins/Editor/JetBrains*
 
 # Keep everything else in Assets (user-created content)
-!/[Aa]ssets/**/*.meta
+!/[Aa]ssets/**/*.meta/Assets/Font/
