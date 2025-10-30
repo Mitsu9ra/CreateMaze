@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 public class MazeGenerator_WallExtend_Proper : MonoBehaviour
@@ -7,7 +7,7 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
     public int height = 21;
     public GameObject wallPrefab;
     public GameObject playerPrefab;
-    public GameObject goalPrefab; // Inspector‚Åİ’è‚µ‚Ä‚È‚­‚Ä‚àOK
+    public GameObject goalPrefab; // Inspectorã§è¨­å®šã—ã¦ãªãã¦ã‚‚OK
 
     [HideInInspector] public Vector2Int startPos;
     [HideInInspector] public Vector2Int goalPos;
@@ -20,7 +20,26 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
 
     void Start()
     {
-        if (width % 2 == 0) width++;
+        switch (ChangeScene.flag)
+        {
+            case 1:
+                width = 7;
+                height = 7;
+                break;
+            case 2:
+                width = 15;
+                height = 15;
+                break;
+            case 3:
+                width = 21;
+                height = 21;
+                break;
+            default:
+                width = 21;
+                height = 21;
+                break;
+        }
+                if (width % 2 == 0) width++;
         if (height % 2 == 0) height++;
 
         GenerateAndDrawMaze();
@@ -28,12 +47,12 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
 
     public void GenerateAndDrawMaze()
     {
-        // ŒÃ‚¢•ÇEƒvƒŒƒCƒ„[EƒS[ƒ‹íœ
+        // å¤ã„å£ãƒ»ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒ»ã‚´ãƒ¼ãƒ«å‰Šé™¤
         foreach (Transform child in transform) Destroy(child.gameObject);
         if (playerInstance != null) { Destroy(playerInstance); playerInstance = null; }
         if (goalInstance != null) { Destroy(goalInstance); goalInstance = null; }
 
-        // –À˜H¶¬
+        // è¿·è·¯ç”Ÿæˆ
         GenerateMaze();
         DrawMaze();
         SetStartAndGoal();
@@ -99,7 +118,7 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
 
     void SetStartAndGoal()
     {
-        // ƒXƒ^[ƒg‚ÆƒS[ƒ‹ˆÊ’uŒˆ’è
+        // ã‚¹ã‚¿ãƒ¼ãƒˆã¨ã‚´ãƒ¼ãƒ«ä½ç½®æ±ºå®š
         Vector2Int[] corners = new Vector2Int[]
         {
             new Vector2Int(1,1),
@@ -116,7 +135,7 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         if (maze[startPos.x, startPos.y] == 0) maze[startPos.x, startPos.y] = 1;
         if (maze[goalPos.x, goalPos.y] == 0) maze[goalPos.x, goalPos.y] = 1;
 
-        // ƒvƒŒƒCƒ„[¶¬
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”Ÿæˆ
         playerInstance = Instantiate(playerPrefab, new Vector3(startPos.x, startPos.y, -0.1f), Quaternion.identity);
         playerInstance.tag = "Player";
 
@@ -124,7 +143,7 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         if (gm != null)
             gm.SetMaze(maze, new Vector3(startPos.x, startPos.y, -0.1f));
 
-        // Goal Prefab ‚ª null ‚Ìê‡‚Í Resources ‚©‚çƒ[ƒh
+        // Goal Prefab ãŒ null ã®å ´åˆã¯ Resources ã‹ã‚‰ãƒ­ãƒ¼ãƒ‰
         if (goalPrefab == null)
             goalPrefab = Resources.Load<GameObject>("Goal");
 
@@ -133,7 +152,7 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
             goalInstance = Instantiate(goalPrefab, new Vector3(goalPos.x, goalPos.y, -0.1f), Quaternion.identity);
             goalInstance.tag = "Goal";
 
-            // •K‚¸ BoxCollider2D ‚Æ Goal ƒXƒNƒŠƒvƒg‚ğ—LŒø‰»
+            // å¿…ãš BoxCollider2D ã¨ Goal ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’æœ‰åŠ¹åŒ–
             BoxCollider2D col = goalInstance.GetComponent<BoxCollider2D>();
             if (col != null) col.enabled = true;
 
@@ -142,20 +161,22 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         }
         else
         {
-            Debug.LogError("goalPrefab ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñI");
+            Debug.LogError("goalPrefab ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“ï¼");
         }
     }
 
     public void ResetMazeSafe()
 {
-    // prefab ‚ªİ’è‚³‚ê‚Ä‚¢‚é‚©Šm”F
+    // prefab ãŒè¨­å®šã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª
     if (goalPrefab == null || playerPrefab == null || wallPrefab == null)
     {
-        Debug.LogError("Prefab ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ!");
+        Debug.LogError("Prefab ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã›ã‚“!");
         return;
     }
 
-    // –À˜H‚ğƒŠƒZƒbƒg
+
+
+    // è¿·è·¯ã‚’ãƒªã‚»ãƒƒãƒˆ
     ResetMaze();
 }
 
@@ -174,4 +195,11 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
 
     public int[,] GetMaze() => maze;
     public void ResetMaze() => GenerateAndDrawMaze();
+
+    public void ExpandMaze(int amount)
+    {
+        width += amount;
+        height += amount;
+        Debug.Log($"è¿·è·¯æ‹¡å¼µ: {width} Ã— {height}");
+    }
 }
