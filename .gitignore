@@ -99,7 +99,40 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
+# Unity Package Manager lock file
+Packages/packages-lock.json
+
+
+
+# --- Auto-generated folders and files under Assets ---
+
+# Addressables build data
+/[Aa]ssets/AddressableAssetsData/
+/[Aa]ssets/StreamingAssets/aa*
+/[Aa]ssets/Addressables_Temp*/
+
+# Visual Scripting generated data
+/[Aa]ssets/Unity.VisualScripting.Generated/
+
+# Asset Store Tools (optional)
+/[Aa]ssets/AssetStoreTools*/
+
+# Auto-generated test scenes
+/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Build cache data or generated asset bundles
+/[Aa]ssets/StreamingAssets/build*/ 
+/[Aa]ssets/StreamingAssets/AssetBundles*/
+
+# Temporary or local-only editor data
+/[Aa]ssets/Plugins/Editor/JetBrains*
+/[Aa]ssets/Project/Plugins/Editor/JetBrains*
+
+# Keep everything else in Assets (user-created content)
+!/[Aa]ssets/**/*.meta/Assets/Font/
+
 
 # Asset Store files
 /[Aa]ssets/*
-!/[Aa]ssets/Project/
+!/[Aa]ssets/
+
