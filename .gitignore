@@ -103,6 +103,7 @@ InitTestScene*.unity*
 Packages/packages-lock.json
 
 
+
 # --- Auto-generated folders and files under Assets ---
 
 # Addressables build data
@@ -129,3 +130,9 @@ Packages/packages-lock.json
 
 # Keep everything else in Assets (user-created content)
 !/[Aa]ssets/**/*.meta/Assets/Font/
+
+
+# Asset Store files
+/[Aa]ssets/*
+!/[Aa]ssets/
+
