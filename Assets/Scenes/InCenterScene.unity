@@ -171,6 +171,7 @@ GameObject:
   - component: {fileID: 305781497}
   - component: {fileID: 305781496}
   - component: {fileID: 305781495}
+  - component: {fileID: 305781498}
   m_Layer: 5
   m_Name: Play (hard)
   m_TagString: Untagged
@@ -244,9 +245,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791984825}
-        m_TargetAssemblyTypeName: ButtonExecutor, Assembly-CSharp
-        m_MethodName: OnButtonClickExecute
+      - m_Target: {fileID: 305781498}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -294,6 +295,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305781493}
   m_CullTransparentMesh: 1
+--- !u!114 &305781498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305781493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &395557723
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,11 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b303faa4a7a81074f95fac0c304ad941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMover
-  yOffset: 0
-  duration: 0.3
-  smoothStepFactor: 1
-  minExecutionZoomSize: 1
-  minSelectionZoomSize: 1.5
 --- !u!1 &542822463
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +544,7 @@ GameObject:
   - component: {fileID: 542822466}
   - component: {fileID: 542822465}
   - component: {fileID: 542822464}
+  - component: {fileID: 542822468}
   m_Layer: 5
   m_Name: Exit
   m_TagString: Untagged
@@ -590,6 +599,18 @@ MonoBehaviour:
       - m_Target: {fileID: 791984825}
         m_TargetAssemblyTypeName: ButtonExecutor, Assembly-CSharp
         m_MethodName: OnButtonClickExecute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 542822468}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button8
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -658,6 +679,18 @@ RectTransform:
   m_AnchoredPosition: {x: -925, y: 509}
   m_SizeDelta: {x: 417.2097, y: 165.519}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &542822468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542822463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &589774808
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,6 +853,7 @@ GameObject:
   - component: {fileID: 621221120}
   - component: {fileID: 621221119}
   - component: {fileID: 621221121}
+  - component: {fileID: 621221122}
   m_Layer: 5
   m_Name: Play (easy)
   m_TagString: Untagged
@@ -943,6 +977,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 621221122}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &621221122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621221117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &671303962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,19 +1082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0cdde7209691f4a900c3c02cc33413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonSq
-  mainMenuButtons:
-  - {fileID: 621221121}
-  - {fileID: 810062430}
-  - {fileID: 305781495}
-  - {fileID: 542822464}
-  - {fileID: 1872872272}
-  subMenus:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 974601208}
-  - {fileID: 677893778}
-  eventSystem: {fileID: 671303965}
 --- !u!1 &671489483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,20 +1262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a6445537bbe47642acb5624bbe9f9ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bs
-  mainMenuButtons:
-  - {fileID: 621221121}
-  - {fileID: 810062430}
-  - {fileID: 305781495}
-  - {fileID: 1872872272}
-  - {fileID: 542822464}
-  subMenus:
-  - {fileID: 395557723}
-  - {fileID: 1124723703}
-  - {fileID: 944097416}
-  - {fileID: 677893778}
-  - {fileID: 974601208}
-  eventSystem: {fileID: 671303965}
-  buttonExecutor: {fileID: 791984825}
 --- !u!114 &791984825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,49 +1274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7712c100cf4eb4ea6da7e21d579e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExecutor
-  buttonController: {fileID: 791984824}
-  cameraMover: {fileID: 519420034}
-  buttonSettings:
-  - shouldSelectionZoom: 1
-    selectionTargetObject: {fileID: 1876159843}
-    selectionZoomSize: 6.7
-    shouldZoom: 1
-    targetObject: {fileID: 395557724}
-    zoomSize: 1
-    shouldExecuteAction: 1
-    sceneName: TitleScene
-  - shouldSelectionZoom: 1
-    selectionTargetObject: {fileID: 671489484}
-    selectionZoomSize: 6.5
-    shouldZoom: 1
-    targetObject: {fileID: 1124723704}
-    zoomSize: 1
-    shouldExecuteAction: 1
-    sceneName: TitleScene
-  - shouldSelectionZoom: 1
-    selectionTargetObject: {fileID: 591437071}
-    selectionZoomSize: 6.7
-    shouldZoom: 1
-    targetObject: {fileID: 944097417}
-    zoomSize: 1
-    shouldExecuteAction: 1
-    sceneName: TitleScene
-  - shouldSelectionZoom: 1
-    selectionTargetObject: {fileID: 2055262195}
-    selectionZoomSize: 6.8
-    shouldZoom: 1
-    targetObject: {fileID: 677893779}
-    zoomSize: 4
-    shouldExecuteAction: 1
-    sceneName: RankingScene
-  - shouldSelectionZoom: 1
-    selectionTargetObject: {fileID: 2006561784}
-    selectionZoomSize: 6.8
-    shouldZoom: 0
-    targetObject: {fileID: 542822467}
-    zoomSize: 0
-    shouldExecuteAction: 1
-    sceneName: OutCenterScene
 --- !u!4 &791984826
 Transform:
   m_ObjectHideFlags: 0
@@ -1313,6 +1301,7 @@ GameObject:
   - component: {fileID: 810062432}
   - component: {fileID: 810062431}
   - component: {fileID: 810062430}
+  - component: {fileID: 810062434}
   m_Layer: 5
   m_Name: Play (normal)
   m_TagString: Untagged
@@ -1364,9 +1353,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791984825}
-        m_TargetAssemblyTypeName: ButtonExecutor, Assembly-CSharp
-        m_MethodName: OnButtonClickExecute
+      - m_Target: {fileID: 810062434}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1436,6 +1425,18 @@ RectTransform:
   m_AnchoredPosition: {x: 730, y: -700}
   m_SizeDelta: {x: 396.3404, y: 95.4519}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &810062434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810062429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &842849867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,6 +2342,7 @@ GameObject:
   - component: {fileID: 1872872271}
   - component: {fileID: 1872872270}
   - component: {fileID: 1872872272}
+  - component: {fileID: 1872872273}
   m_Layer: 5
   m_Name: RankingPlate
   m_TagString: Untagged
@@ -2451,9 +2453,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 791984825}
-        m_TargetAssemblyTypeName: ButtonExecutor, Assembly-CSharp
-        m_MethodName: OnButtonClickExecute
+      - m_Target: {fileID: 1872872273}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button7
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2463,6 +2465,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1872872273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1872872268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1876159842
 GameObject:
   m_ObjectHideFlags: 0

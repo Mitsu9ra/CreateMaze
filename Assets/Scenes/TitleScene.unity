@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 1134434839}
   - component: {fileID: 1134434838}
   - component: {fileID: 1134434837}
+  - component: {fileID: 1134434840}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -561,6 +562,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1134434840}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button9
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1134434838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +612,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134434835}
   m_CullTransparentMesh: 1
+--- !u!114 &1134434840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134434835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1 &1160398852
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,8 +838,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504832bba0d30684aadd886e1b51bd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Title
-  buttonA: {fileID: 1134434837}
-  buttonB: {fileID: 1904469417}
 --- !u!4 &1402719454
 Transform:
   m_ObjectHideFlags: 0
@@ -949,8 +972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504832bba0d30684aadd886e1b51bd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Title
-  buttonA: {fileID: 1134434837}
-  buttonB: {fileID: 1904469417}
 --- !u!1 &1683974020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1189,7 @@ GameObject:
   - component: {fileID: 1904469419}
   - component: {fileID: 1904469418}
   - component: {fileID: 1904469417}
+  - component: {fileID: 1904469420}
   m_Layer: 5
   m_Name: InCenter
   m_TagString: Untagged
@@ -1251,6 +1273,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1904469420}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: change_button9
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1904469418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,6 +1323,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904469415}
   m_CullTransparentMesh: 1
+--- !u!114 &1904469420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904469415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2025eb006fcf43444920c5384d87fabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChangeScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
