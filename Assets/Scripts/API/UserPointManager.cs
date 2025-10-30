@@ -19,47 +19,60 @@ public class UserPointList
     public List<UserPoint> users;
 }
 
+public class UnsafeCertificateHandler : CertificateHandler
+{
+    protected override bool ValidateCertificate(byte[] certificateData)
+    {
+        // ⚠️ 開発中だけ使用。本番では無効にする！
+        return true;
+    }
+}
+
 public class UserPointManager
 {
-    // ★ ここをLAN内のPC IPに変更
-    private string baseUrl = "http://10.18.20.27/api";
+    // LAN 内サーバー
+    private string baseUrl = "https://192.168.0.10/api";
 
     // ✅ ランキング順に全ユーザーのポイントを取得
     public IEnumerator GetAllUserPointsSorted(Action<List<UserPoint>> onSuccess, Action<string> onError)
     {
         string url = $"{baseUrl}/userPoints.php";
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            try
+            // 🔥 証明書検証を無視（開発用）
+            request.certificateHandler = new UnsafeCertificateHandler();
+            request.timeout = 10; // タイムアウト対策
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                // PHP側が配列だけ返すので、JSONUtilityで読める形にする
-                string json = "{\"users\":" + request.downloadHandler.text + "}";
-                Debug.Log("レスポンス全文: " + json);
-
-                UserPointList data = JsonUtility.FromJson<UserPointList>(json);
-
-                if (data != null && data.users != null)
+                try
                 {
-                    // 🔽 ポイント降順にソート
-                    data.users.Sort((a, b) => b.point.CompareTo(a.point));
-                    onSuccess?.Invoke(data.users);
+                    string json = "{\"users\":" + request.downloadHandler.text + "}";
+                    Debug.Log("レスポンス全文: " + json);
+
+                    UserPointList data = JsonUtility.FromJson<UserPointList>(json);
+
+                    if (data != null && data.users != null)
+                    {
+                        data.users.Sort((a, b) => b.point.CompareTo(a.point));
+                        onSuccess?.Invoke(data.users);
+                    }
+                    else
+                    {
+                        onError?.Invoke("データが空です");
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    onError?.Invoke("データが空です");
+                    onError?.Invoke("JSONパースエラー: " + e.Message + "\nレスポンス: " + request.downloadHandler.text);
                 }
             }
-            catch (Exception e)
+            else
             {
-                onError?.Invoke("JSONパースエラー: " + e.Message + "\nレスポンス: " + request.downloadHandler.text);
+                onError?.Invoke("通信エラー: " + request.error + "\nURL: " + url);
             }
-        }
-        else
-        {
-            onError?.Invoke("通信エラー: " + request.error + "\nURL: " + url);
         }
     }
 
@@ -78,6 +91,10 @@ public class UserPointManager
             req.downloadHandler = new DownloadHandlerBuffer();
             req.SetRequestHeader("Content-Type", "application/json; charset=UTF-8");
             req.SetRequestHeader("Accept", "application/json");
+
+            // 🔥 証明書検証を無視（開発用）
+            req.certificateHandler = new UnsafeCertificateHandler();
+            req.timeout = 10;
 
             yield return req.SendWebRequest();
 
