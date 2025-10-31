@@ -31,7 +31,7 @@ public class UnsafeCertificateHandler : CertificateHandler
 public class UserPointManager
 {
     // LAN 内サーバー
-    private string baseUrl = "https://192.168.0.10/api";
+    private string baseUrl = "https://10.18.20.27/api";
 
     // ✅ ランキング順に全ユーザーのポイントを取得
     public IEnumerator GetAllUserPointsSorted(Action<List<UserPoint>> onSuccess, Action<string> onError)
