@@ -135,4 +135,9 @@ Packages/packages-lock.json
 # Asset Store files
 /[Aa]ssets/*
 !/[Aa]ssets/
+!/[Aa]ssets/Font/
+!/[Aa]ssets/Settings/
+!/[Aa]ssets/Animation/
+!/[Aa]ssets/naichilab/
+!/[Aa]ssets/Sqript/
 
