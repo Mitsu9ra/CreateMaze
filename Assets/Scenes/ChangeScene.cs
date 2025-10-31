@@ -56,4 +56,10 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("LevelSelectScene");
 
     }
+    public void change_button10()
+    {
+        flag = 2;
+        SceneManager.LoadScene("InCenterScene");
+
+    }
 }
