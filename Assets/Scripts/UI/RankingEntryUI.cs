@@ -47,19 +47,19 @@ public class RankingEntryUI : MonoBehaviour
             return;
         }
 
-        // ✅ 仮のユーザーID生成（本来はサーバー側管理が望ましい）
+        //  仮のユーザーID生成
         int userId = userName.GetHashCode();
 
-        // ✅ 登録情報を保存しておく
+        //  登録情報を保存しておく
         PlayerPrefs.SetString("LastPlayerName", userName);
         PlayerPrefs.Save();
 
-        // ✅ スコア送信処理
+        //  スコア送信処理
         StartCoroutine(api.UpdateUserPoint(
             userId, userName, point,
             (res) =>
             {
-                Debug.Log($"✅ 登録完了: {res.userName} = {res.point}");
+                Debug.Log($" 登録完了: {res.userName} = {res.point}");
                 SceneManager.LoadScene("RankingScene");
             },
             (err) =>
