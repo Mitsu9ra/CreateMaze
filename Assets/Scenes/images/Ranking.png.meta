@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 12a3db134f36cec4f9e2987d5591f643
+guid: 8651a53b3e9831a4e8adef5688ee896f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7970807453783040759
-    second: Runking_0
+      213: -557450374029725830
+    second: Ranking_0
+  - first:
+      213: 1381625926679613944
+    second: Ranking_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Runking_0
+      name: Ranking_0
       rect:
         serializedVersion: 2
-        x: 30
-        y: 2
-        width: 2000
-        height: 1049
+        x: 0
+        y: 4
+        width: 2048
+        height: 957
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90dd9381ad0026190800000000000000
-      internalID: -7970807453783040759
+      spriteID: a7fac0c96d98348f0800000000000000
+      internalID: -557450374029725830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranking_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 2048
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f1553cc5758c2310800000000000000
+      internalID: 1381625926679613944
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Runking_0: -7970807453783040759
+      Ranking_0: -557450374029725830
+      Ranking_1: 1381625926679613944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

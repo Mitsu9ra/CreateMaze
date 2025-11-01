@@ -72,9 +72,21 @@ public class Goal : MonoBehaviour
 
             if (countdown != null && mazeGen != null)
             {
+                float addScore = 0;
                 // スコア = 残りタイム × 迷路の幅
-                float addScore = countdown.RemainingTime * mazeGen.width*goalCount;
-                totalScore += addScore;
+                if (mazeGen.width > 28)
+                {
+                    addScore = countdown.RemainingTime * mazeGen.width * goalCount * 15;
+                }
+                else if (mazeGen.width >20 && mazeGen.width <28)
+                {
+                    addScore = countdown.RemainingTime * mazeGen.width * goalCount;
+                }
+                else
+                {
+                    addScore = countdown.RemainingTime * goalCount *5;
+                }
+                    totalScore += addScore;
                 Debug.Log($"スコア加算: +{addScore:F2} (合計: {totalScore:F2})");
 
                 //  残り時間 +
