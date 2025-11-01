@@ -60,6 +60,7 @@ public class Goal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        int flagValue = Title.flag;
         if (isResetting) return;
 
         if (other.CompareTag("Player"))
@@ -77,7 +78,7 @@ public class Goal : MonoBehaviour
                 Debug.Log($"スコア加算: +{addScore:F2} (合計: {totalScore:F2})");
 
                 //  残り時間 +
-                if (ChangeScene.flag > 1)
+                if (Title.flag > 1)
                 {
                     countdown.AddExtraTime(7f);
                     Debug.Log("残り時間 +7 秒！");

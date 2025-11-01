@@ -59,6 +59,10 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         DrawMaze();
         SetStartAndGoal();
         AdjustCamera();
+        if (width >= 21)
+        {
+            HighlightRandomCell();
+        }
     }
 
     void GenerateMaze()
@@ -193,6 +197,8 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         cam.orthographicSize = Mathf.Max(sizeX, sizeY);
         cam.clearFlags = CameraClearFlags.SolidColor;
         cam.backgroundColor = Color.black;
+
+        
     }
 
     public int[,] GetMaze() => maze;
@@ -204,4 +210,73 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
         height += amount;
         Debug.Log($"迷路拡張: {width} × {height}");
     }
+
+    void HighlightRandomCell()
+    {
+        List<Vector2Int> openCells = new List<Vector2Int>();
+
+        // 通路セルを収集（外周1マスは除外）
+        for (int x = 1; x < width - 1; x++)
+        {
+            for (int y = 1; y < height - 1; y++)
+            {
+                if (maze[x, y] == 1)
+                {
+                    // 周囲4方向が壁で囲まれていない場所だけ選ぶ
+                    if (maze[x + 1, y] == 1 && maze[x - 1, y] == 1 &&
+                        maze[x, y + 1] == 1 && maze[x, y - 1] == 1)
+                    {
+                        openCells.Add(new Vector2Int(x, y));
+                    }
+                }
+            }
+        }
+
+        if (openCells.Count == 0)
+        {
+            Debug.LogWarning("⚠️ 有効な通路セルが見つかりませんでした。");
+            return;
+        }
+
+        // ✅ 難易度やサイズに応じて生成数変更
+        int count = width >= 25 ? 5 : 3;
+
+        for (int i = 0; i < count; i++)
+        {
+            // ランダムな通路を選択（重複防止）
+            int index = Random.Range(0, openCells.Count);
+            Vector2Int randomCell = openCells[index];
+            openCells.RemoveAt(index);
+
+            // ✅ 赤いマーカー生成
+            GameObject marker = new GameObject($"ReverseTile_{i}");
+            marker.transform.position = new Vector3(randomCell.x, randomCell.y, 0f);
+            marker.transform.localScale = new Vector3(90f, 90f, 90f);
+
+            SpriteRenderer sr = marker.AddComponent<SpriteRenderer>();
+
+            Texture2D tex = new Texture2D(1, 1);
+            tex.SetPixel(0, 0, Color.red);
+            tex.Apply();
+
+            sr.sprite = Sprite.Create(tex, new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
+            sr.sortingOrder = 10;
+
+            // ✅ Collider（トリガー）と Rigidbody2D 追加
+            BoxCollider2D col = marker.AddComponent<BoxCollider2D>();
+            col.isTrigger = true;
+
+            Rigidbody2D rb = marker.AddComponent<Rigidbody2D>();
+            rb.gravityScale = 0f;
+            rb.isKinematic = true;
+
+            marker.AddComponent<ReverseTrigger>();
+
+            Debug.Log($"✅ ReverseTile[{i}] 生成完了: {randomCell}");
+        }
+    }
+
+
+
+
 }
