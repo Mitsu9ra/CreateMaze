@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
+    public static int flag = 0;
     // Inspectorから設定できるように、2つのボタンを公開
     public Button buttonA;
     public Button buttonB;
@@ -141,9 +142,31 @@ public class Title : MonoBehaviour
     /// <summary>
     /// Aボタンが押されたときに実行される処理
     /// </summary>
-    public void HandleButtonAAction()
+   
+        
+public void HandleButtonAAction()
     {
         Debug.Log(buttonA.gameObject.name + "おされました");
+        const string FLAG_KEY = "MENU_ACTION_FLAG";
+        int flagValue = PlayerPrefs.GetInt(FLAG_KEY, 0);
+
+        Debug.Log($"[Title] PlayerPrefsから読み込んだ難易度フラグ値: {flagValue}");
+
+        switch (flagValue)
+        {
+            case 1:
+                Title.flag = 1;
+                break;
+            case 2:
+                Title.flag = 2;
+                break;
+            case 3:
+                Title.flag = 3;
+                break;
+            default:
+                break;
+        }
+        Debug.Log($"[Title] Title.flag に設定した最終値: {Title.flag}");
         SceneManager.LoadScene("MazeScene");
     }
 

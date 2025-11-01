@@ -1531,6 +1531,7 @@ MonoBehaviour:
     zoomSize: 2
     shouldExecuteAction: 1
     sceneName: TitleScene
+    crossSceneFlagInt: 1
   - shouldSelectionZoom: 1
     selectionTargetObject: {fileID: 671489484}
     selectionZoomSize: 5.8
@@ -1539,6 +1540,7 @@ MonoBehaviour:
     zoomSize: 1
     shouldExecuteAction: 1
     sceneName: TitleScene
+    crossSceneFlagInt: 2
   - shouldSelectionZoom: 1
     selectionTargetObject: {fileID: 591437071}
     selectionZoomSize: 6.7
@@ -1547,6 +1549,7 @@ MonoBehaviour:
     zoomSize: 2
     shouldExecuteAction: 1
     sceneName: TitleScene
+    crossSceneFlagInt: 3
   - shouldSelectionZoom: 1
     selectionTargetObject: {fileID: 2006561784}
     selectionZoomSize: 6.5
@@ -1555,6 +1558,7 @@ MonoBehaviour:
     zoomSize: 3
     shouldExecuteAction: 1
     sceneName: OutCenterScene
+    crossSceneFlagInt: 0
   - shouldSelectionZoom: 1
     selectionTargetObject: {fileID: 2055262195}
     selectionZoomSize: 6.5
@@ -1563,6 +1567,7 @@ MonoBehaviour:
     zoomSize: 6
     shouldExecuteAction: 1
     sceneName: RankingScene
+    crossSceneFlagInt: 0
 --- !u!4 &791984826
 Transform:
   m_ObjectHideFlags: 0

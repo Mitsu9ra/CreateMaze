@@ -9,7 +9,7 @@ public class ButtonZoomSetting
     [Tooltip("ボタン選択時（Enterキーやマウスオーバー時）にズームを有効にするか")]
     public bool shouldSelectionZoom = false;
 
-    [Tooltip("ボタン選択時のズームターゲットオブジェクト (nullの場合はズームしない)")] // ⭐ 新規追加
+    [Tooltip("ボタン選択時のズームターゲットオブジェクト (nullの場合はズームしない)")]
     public Transform selectionTargetObject;
 
     [Tooltip("ボタン選択時のorthographicSize (selectionZoomEnabledがtrueの場合に適用)")]
@@ -31,6 +31,11 @@ public class ButtonZoomSetting
 
     [Tooltip("shouldExecuteActionがtrueの場合のシーン名")]
     public string sceneName = "";
+
+    // ⭐ 4. Cross-Scene Flag (int値のみ)
+    [Header("4. Cross-Scene Flag (int値のみ)")]
+    [Tooltip("他のシーンで使用するフラグに設定する値（int型）。キーはスクリプト内で固定されています。")]
+    public int crossSceneFlagInt = 0;
 }
 
 public class ButtonExecutor : MonoBehaviour
@@ -42,6 +47,9 @@ public class ButtonExecutor : MonoBehaviour
     [Header("Action Settings")]
     public ButtonZoomSetting[] buttonSettings;
 
+    // ⭐ クロスシーンフラグの固定キーを定義
+    private const string CROSS_SCENE_FLAG_KEY = "MENU_ACTION_FLAG";
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -52,10 +60,8 @@ public class ButtonExecutor : MonoBehaviour
 
     public void HandleSelectionZoom(int globalIndex)
     {
-        // cameraMoverが設定されているか確認
         if (cameraMover == null) return;
 
-        // 設定配列の範囲外チェック
         if (globalIndex < 0 || globalIndex >= buttonSettings.Length)
         {
             cameraMover.ResetToDefaultTarget();
@@ -64,28 +70,23 @@ public class ButtonExecutor : MonoBehaviour
 
         ButtonZoomSetting setting = buttonSettings[globalIndex];
 
-        // 選択時ズームが有効な場合
         if (setting.shouldSelectionZoom)
         {
-            // ⭐ ズームターゲットを selectionTargetObject に設定する
             if (setting.selectionTargetObject != null)
             {
-                Transform targetTransform = setting.selectionTargetObject; // 選択時ズーム専用ターゲット
+                Transform targetTransform = setting.selectionTargetObject;
                 float zoomSize = setting.selectionZoomSize;
 
-                // カメラをターゲットと選択時ズームサイズで移動させる
                 cameraMover.MoveToSelectionTarget(targetTransform, zoomSize);
             }
             else
             {
-                // selectionTargetObjectが設定されていない場合はデフォルトに戻す
                 Debug.LogWarning($"ButtonExecutor: Button index {globalIndex} has selection zoom enabled but no selectionTargetObject assigned. Resetting camera.");
                 cameraMover.ResetToDefaultTarget();
             }
         }
         else
         {
-            // 選択時ズームが無効な場合は、デフォルトターゲットに戻す
             cameraMover.ResetToDefaultTarget();
         }
     }
@@ -129,7 +130,13 @@ public class ButtonExecutor : MonoBehaviour
             }
         }
 
-        // 3. アクション（シーン遷移など）の実行
+        // ⭐ 3. クロスシーンフラグの設定 (固定キーを使用)
+        // 値が0であっても、設定された値を常にPlayerPrefsに保存します。
+        PlayerPrefs.SetInt(CROSS_SCENE_FLAG_KEY, setting.crossSceneFlagInt);
+        PlayerPrefs.Save();
+        Debug.Log($"Cross-Scene Flag Set: Key='{CROSS_SCENE_FLAG_KEY}', Value={setting.crossSceneFlagInt}");
+
+        // 4. アクション（シーン遷移など）の実行
         if (setting.shouldExecuteAction && !string.IsNullOrEmpty(setting.sceneName))
         {
             StartCoroutine(WaitAndExecuteFinalAction(waitTime, setting.sceneName));

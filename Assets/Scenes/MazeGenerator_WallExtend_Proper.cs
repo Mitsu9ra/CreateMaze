@@ -17,22 +17,24 @@ public class MazeGenerator_WallExtend_Proper : MonoBehaviour
     private int[,] maze;
     private List<Vector2Int> cellList = new List<Vector2Int>();
     private System.Random rand = new System.Random();
-
+    
     void Start()
     {
-        switch (ChangeScene.flag)
+        int flagValue = Title.flag;
+        Debug.Log($"[MazeGenerator] Title.flagから取得した難易度値: {flagValue}");
+        switch (flagValue)
         {
             case 1:
-                width = 7;
-                height = 7;
+                width = 11;
+                height = 11;
                 break;
             case 2:
-                width = 15;
-                height = 15;
+                width = 19;
+                height = 19;
                 break;
             case 3:
-                width = 21;
-                height = 21;
+                width = 29;
+                height = 29;
                 break;
             default:
                 width = 21;
