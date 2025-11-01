@@ -5,17 +5,20 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+  - enabled: 0
+    path: "Assets/\u6CA1/SampleScene.unity"
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/OutCenterScene.unity
+    guid: f1c9a3c37fd05f74d8f530a347eb8fdf
   - enabled: 1
     path: Assets/Scenes/InCenterScene.unity
     guid: 62c0d9c693f6cd24daf8c48763c54e85
-  - enabled: 1
-    path: Assets/Scenes/GameClearScene.unity
+  - enabled: 0
+    path: "Assets/\u6CA1/GameClearScene.unity"
     guid: 11d87051115a6cb4e9d3d15bd2bd8432
-  - enabled: 1
-    path: Assets/Scenes/LevelSelectScene.unity
+  - enabled: 0
+    path: "Assets/\u6CA1/LevelSelectScene.unity"
     guid: 2c501b3220f309d47a992f14d94110f6
   - enabled: 1
     path: Assets/Scenes/RankingEntryScene.unity
@@ -29,8 +32,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MazeScene.unity
     guid: 7afc93c641010604cab290b72303f7ab
-  - enabled: 1
-    path: Assets/Scenes/OutCenterScene.unity
-    guid: f1c9a3c37fd05f74d8f530a347eb8fdf
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
